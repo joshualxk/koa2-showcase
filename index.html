@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey there~</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    .overlay {
+      display: none;
+      opacity: 0.3;
+      background: rgba(0, 0, 0, .5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      transition: opacity .3s;
+    }
+
+    .login_popup {
+      display: none;
+      position: fixed;
+
+      z-index: 1001;
+      transition: opacity .3s;
+      background-color: #fff;
+
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .login_popup_title {
+      margin-top: 10px;
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      color: #666699;
+    }
+
+    .popup_content {
+      margin-bottom: 20px;
+    }
+
+    .login_popup p {
+      position: relative;
+      margin: 0;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      z-index: 1001;
+    }
+
+    .login_popup_input {
+      box-sizing: border-box;
+      width: 330px;
+      height: 40px;
+      margin: 0px;
+      padding: 5px 10px;
+      border: 1px solid #b8b8b8;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+
+    .login_popup_error {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+      line-height: 14px;
+      height: 14px;
+      color: #CC3333;
+    }
+
+    .login_popup_btn {
+      width: 330px;
+      height: 40px;
+      margin: 0px;
+      padding: 5px 10px;
+      border: 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 8px;
+      background: #66CCCC;
+      color: #fff;
+    }
+
+    .login_close_btn {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      right: 12px;
+      top: 4px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <div class="login_popup">
+    <div class="login_popup_title">
+      <p>账号登录</p>
+      <div class="login_close_btn">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;"
+          xml:space="preserve">
+          <polygon points="371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23
+	185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 " />
+        </svg>
+      </div>
+    </div>
+    <div class="popup_content">
+      <form>
+        <p>
+          <input class="login_popup_input" id="lp_uname" type="text" name="uName" autocomplete="off" placeholder="用户名">
+        </p>
+        <p>
+          <input class="login_popup_input" id="lp_pw" type="password" name="pw" autocomplete="off" placeholder="密码">
+        </p>
+        <p>
+          <span id="lp_error" class="login_popup_error"></span>
+        </p>
+        <p>
+          <input class="login_popup_btn" id="lp_login" type="button" value="登录">
+        </p>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    $(() => {
+      function toggle_login_panel() {
+        $('.login_popup').toggle();
+        $('.overlay').toggle();
+      }
+
+      function show_login_error(msg) {
+        $('#lp_error').text(msg);
+      }
+
+      function clear_login_error() {
+        show_login_error('');
+      }
+
+      $('.login_close_btn').on('click', () => {
+        toggle_login_panel();
+      });
+
+      function onLogin(a, b, c) {
+        console.log("onLogin", a, b, c);
+      }
+
+      $('#lp_login').on('click', () => {
+        clear_login_error();
+
+        let uname = $('#lp_uname').val();
+        if (!uname || uname.trim() == '') {
+          show_login_error('用户名不能为空!');
+          $('#lp_uname').focus();
+          return;
+        }
+
+        let pw = $('#lp_pw').val();
+        if (!pw || pw.trim() == '') {
+          show_login_error('密码不能为空!');
+          $('#lp_pw').focus();
+          return;
+        }
+
+        $.post(
+          'login',
+          {uname:uname, pw:pw},
+          onLogin,
+        )
+      });
+
+      $('.login_popup').on('keypress', ev => {
+        if (ev.keyCode == 13) {
+          $('#lp_login').click();
+          ev.preventDefault();
+        }
+      });
+
+      toggle_login_panel();
+    })
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/header.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <title>干杯~</title>
+</head>
+
+<body>
+<div class="header">
+  <div class="header-right not-signin">
+    <span class="header-btn" id="signin">登录</span>
+    <span class="header-btn" id="signup">注册</span>
+  </div>
+  <div class="header-right signin" style="display: none">
+    <span id="uname" style="cursor:default">陌生人</span>
+    <span class="header-btn" id="signout">注销</span>
+  </div>
+</div>
+<div class="overlay"></div>
+<div class="popup" id="signin-popup">
+  <div class="popup-title">
+    <p>账号登录</p>
+    <div class="popup-close-btn" id="lp-close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;"
+           xml:space="preserve">
+          <polygon points="371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23
+	185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 "/>
+        </svg>
+    </div>
+  </div>
+  <div class="popup-content">
+    <form>
+      <p>
+        <input class="popup-input" id="lp-uname" type="text" name="uName" autocomplete="off" placeholder="用户名">
+      </p>
+      <p>
+        <input class="popup-input" id="lp-pw" type="password" name="pw" autocomplete="off" placeholder="密码">
+      </p>
+      <p>
+        <input class="popup-input" id="lp-captcha" type="text" name="pw" autocomplete="off" placeholder="验证码">
+      </p>
+      <p>
+        <span style="box-sizing:border-box;width: 150px;height: 50px" class="captcha-container"></span>
+      </p>
+      <p>
+        <span id="lp-error" class="popup-error"></span>
+      </p>
+      <p>
+        <input class="popup-btn" id="lp-signin" type="button" value="登录">
+      </p>
+    </form>
+  </div>
+</div>
+
+<div class="popup" id="signup-popup">
+  <div class="popup-title">
+    <p>账号注册</p>
+    <div class="popup-close-btn" id="rp-close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           x="0px" y="0px" viewBox="0 0 371.23 371.23" style="enable-background:new 0 0 371.23 371.23;"
+           xml:space="preserve">
+          <polygon points="371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23
+	185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 "/>
+        </svg>
+    </div>
+  </div>
+  <div class="popup-content">
+    <form>
+      <p>
+        <input class="popup-input" id="rp-uname" type="text" name="uName" autocomplete="off" placeholder="用户名">
+      </p>
+      <p>
+        <input class="popup-input" id="rp-pw" type="password" name="pw" autocomplete="off" placeholder="密码">
+      </p>
+      <p>
+        <input class="popup-input" id="rp-pw2" type="password" name="pw" autocomplete="off" placeholder="确认密码">
+      </p>
+      <p>
+        <input class="popup-input" id="rp-captcha" type="text" name="pw" autocomplete="off" placeholder="验证码">
+      </p>
+      <p>
+        <span class="captcha-container"></span>
+      </p>
+      <p>
+        <span id="rp-error" class="popup-error"></span>
+      </p>
+      <p>
+        <input class="popup-btn" id="rp-signup" type="button" value="注册">
+      </p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/user.js"></script>
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+
+<!--&lt;!&ndash; Google Analytics: change UA-XXXXX-Y to be your site's ID. &ndash;&gt;-->
+<!--<script>-->
+<!--  window.ga = function () {-->
+<!--    ga.q.push(arguments)-->
+<!--  };-->
+<!--  ga.q = [];-->
+<!--  ga.l = +new Date;-->
+<!--  ga('create', 'UA-XXXXX-Y', 'auto');-->
+<!--  ga('set', 'anonymizeIp', true);-->
+<!--  ga('set', 'transport', 'beacon');-->
+<!--  ga('send', 'pageview')-->
+<!--</script>-->
+<!--<script src="https://www.google-analytics.com/analytics.js" async></script>-->
+</body>
+
+</html>
